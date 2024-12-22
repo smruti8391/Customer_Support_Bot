@@ -5,6 +5,28 @@ import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import dialogflow_v2 as dialogflow
 
+# Reconstruct the JSON from environment variables
+service_account_info = {
+    "type": os.getenv("type"),
+    "project_id": os.getenv("project_id"),
+    "private_key_id": os.getenv("private_key_id"),
+    "private_key": os.getenv("private_key"),
+    "client_email": os.getenv("client_email"),
+    "client_id": os.getenv("client_id"),
+    "auth_uri": os.getenv("auth_uri"),
+    "token_uri": os.getenv("token_uri"),
+    "auth_provider_x509_cert_url": os.getenv("auth_provider_x509_cert_url"),
+    "client_x509_cert_url": os.getenv("client_x509_cert_url"),
+    "universe_domain": os.getenv("universe_domain"),
+}
+
+# Save to a temporary file if needed
+with open("/tmp/service_account.json", "w") as f:
+    json.dump(service_account_info, f)
+
+# Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/service_account.json"
+
 # Retrieve the service account key path from environment variable
 SERVICE_ACCOUNT_KEY_PATH = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
