@@ -5,11 +5,8 @@ import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import dialogflow_v2 as dialogflow
 
-# Path to your service account key file (escaped correctly for Windows)
-SERVICE_ACCOUNT_KEY_PATH = r"C:\Users\Asus\ChatBot\gpt-3-5chatbot-pawh-8d573a4759d6.json"
-
-# Set the environment variable for authentication
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = SERVICE_ACCOUNT_KEY_PATH
+# Retrieve the service account key path from environment variable
+SERVICE_ACCOUNT_KEY_PATH = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 # Dialogflow Project ID
 PROJECT_ID = "gpt-3-5chatbot-pawh"
