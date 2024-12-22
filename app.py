@@ -5,18 +5,17 @@ import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import dialogflow_v2 as dialogflow
 
+# Path to your service account key file (escaped correctly for Windows)
+SERVICE_ACCOUNT_KEY_PATH = r"C:\Users\Asus\ChatBot\gpt-3-5chatbot-pawh-8d573a4759d6.json"
+
+# Set the environment variable for authentication
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = SERVICE_ACCOUNT_KEY_PATH
+
 # Dialogflow Project ID
 PROJECT_ID = "gpt-3-5chatbot-pawh"
 
-# Access credentials from Streamlit secrets
-credentials_json = st.secrets["google"]["gcp_credentials"]
-
-# Parse the credentials from the secret (stored as a JSON string)
-credentials_dict = json.loads(credentials_json)
-
 # Authenticate Dialogflow using the service account credentials
-credentials = service_account.Credentials.from_service_account_info(credentials_dict)
-
+credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_KEY_PATH)
 
 # Streamlit page settings
 st.set_page_config(
