@@ -5,6 +5,9 @@ import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import dialogflow_v2 as dialogflow
 
+# Dialogflow Project ID
+PROJECT_ID = "gpt-3-5chatbot-pawh"
+
 # Path to the secret JSON file
 SERVICE_ACCOUNT_FILE = "/etc/secrets/GOOGLE_APPLICATION_CREDENTIALS"
 
