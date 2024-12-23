@@ -140,3 +140,4 @@ for message in st.session_state.chat_history:
     role_class = "user-message" if message["role"] == "user" else "assistant-message"
     st.markdown(f'<div class="message {role_class}">{message["content"]}</div><br><br>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
+
